@@ -7,7 +7,7 @@ import useStyles from './styles.js';
 
 const steps = ['Shipping Address', 'Payment details'];
 
-const Checkout = ({ cart }) => {
+const Checkout = ({ cart, order, errorMsg, onCaptureCheckout }) => {
     const classes = useStyles();
 
     const [activeStep, setActiveStep] = useState(0);
@@ -34,7 +34,7 @@ const Checkout = ({ cart }) => {
         nextStep();
     }
 
-    const Form =() => activeStep === 0 ? <AddressForm checkoutToken={checkoutToken} next={next} /> : <PaymentForm checkoutToken={checkoutToken} />
+    const Form =() => activeStep === 0 ? <AddressForm checkoutToken={checkoutToken} next={next} /> : <PaymentForm checkoutToken={checkoutToken} backStep={backStep} nextStep={nextStep} onCaptureCheckout={onCaptureCheckout} shippingData={shippingData}/>
 
     const Confirmation =() => ( <div>Confirmation</div>)
 
