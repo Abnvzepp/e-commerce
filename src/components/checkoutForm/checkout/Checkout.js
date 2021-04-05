@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import {Link} from 'react-router-dom';
 import { Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button } from '@material-ui/core'
 import AddressForm from '../AddressForm';
 import PaymentForm from '../PaymentForm';
@@ -36,7 +37,17 @@ const Checkout = ({ cart, order, errorMsg, onCaptureCheckout }) => {
 
     const Form =() => activeStep === 0 ? <AddressForm checkoutToken={checkoutToken} next={next} /> : <PaymentForm checkoutToken={checkoutToken} backStep={backStep} nextStep={nextStep} onCaptureCheckout={onCaptureCheckout} shippingData={shippingData}/>
 
-    const Confirmation =() => ( <div>Confirmation</div>)
+    const Confirmation =() => ( 
+        <>
+            <div>
+                <Typography variant="h5">Thank You for your purchase, firstName lastName</Typography>
+                <Divider className={classes.divider}/>
+                <Typography variant="subtitle2">Order ref: ref</Typography>
+            </div>
+            <br />
+            <Button component={Link} to="/" variant="outlined" type="button">Back to Home</Button>
+        </>
+    )
 
     return (
         <div>
